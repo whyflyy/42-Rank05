@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:43:07 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/07/17 17:50:53 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:53:54 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ const char* Form::GradeTooLowException::what() const throw()
 
 const char* Form::GradeIsNegative::what() const throw()
 {
-	return "Error: New Grade is negative!";
+	return "Error: Grade is negative!";
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &form)

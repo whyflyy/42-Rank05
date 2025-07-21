@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:42:49 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/07/17 18:04:16 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:48:12 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ int	main(void)
 	try
 	{
 		Form	InvalidToo("InvalidToo", 10, 151);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
+
+	try
+	{
+		Form	InvalidThree("InvalidThree", -10, -150);
 	}
 	catch(const std::exception& e)
 	{

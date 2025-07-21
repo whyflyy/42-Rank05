@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:08:03 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/07/16 16:56:51 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:54:03 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 const char* Bureaucrat::GradeIsNegative::what() const throw()
 {
-	return "Error: New Grade is negative!";
+	return "Error: Grade is negative!";
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
