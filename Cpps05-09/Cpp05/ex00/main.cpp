@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:19:41 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/07/15 19:09:49 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:02:52 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(void)
 	try
 	{
 		Bureaucrat Beatriz("Beatriz", 500);
-		//Trying to use Beatriz values
 		std::cout << Beatriz.getGrade();
 	}
 	catch(const std::exception& e)
