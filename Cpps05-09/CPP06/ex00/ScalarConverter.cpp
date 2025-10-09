@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:00:33 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/01 16:12:35 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:58:58 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,80 @@ void	ScalarConverter::convert(std::string literal)
 
 void	ScalarConverter::charConvert(std::string literal)
 {
-	ScalarConverter	sc;
+	//ScalarConverter	sc; //TODO precisa disto??
+	
+	char	tmpC = static_cast<char>(literal[0]);
+
+	std::cout << "char: '" << tmpC << "'" << std::endl; //TODO dar handle de non displayable?
+
+	int		tmpI = static_cast<int>(literal[0]);
+	std::cout << "int: " << tmpI << std::endl;
+	
+	float	tmpF = static_cast<float>(tmpI); //TODO precision e 1 ou 2?
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
+	
+	double	tmpD = static_cast<double>(tmpI);
+	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
+}
+
+void	ScalarConverter::intConvert(std::string literal)
+{
+	int		tmpI = std::atoi(literal.c_str());
+	float	tmpF = static_cast<float>(tmpI);
+	double	tmpD = static_cast<double>(tmpI);
+	
+	/* float	tmpF = std::atof(literal.c_str());
+	double	tmpD = std::strtod(literal.c_str(), NULL); */
+
+	//str(int) to char
+	if (tmpD < 32)
+		std::cout  << "char: Non displayable" << std::endl;
+	else if (tmpD > 127)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(tmpI) << "'" << std::endl;
+
+	//str(int) to int
+	if (tmpD > 2147483647 || tmpD < -2147483648)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
+	
+	//str(int) to float
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	
+	//str(int) to double
+	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
+}
+
+void	ScalarConverter::floatConvert(std::string literal)
+{
+	float	tmpF = std::atof(literal.c_str());
+	int		tmpI = static_cast<int>(tmpF);
+	double	tmpD = static_cast<double>(tmpF);
+
+	//str(float) to char
+	if (tmpD < 32)
+		std::cout  << "char: Non displayable" << std::endl;
+	else if (tmpD > 127)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(tmpI) << "'" << std::endl;
+
+	//str(int) to int
+	if (tmpD > 2147483647 || tmpD < -2147483648)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
+	
+	//str(int) to float
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	
+	//str(int) to double
+	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
+}
+
+void	ScalarConverter::doubleConvert(std::string literal)
+{
 	
 }
