@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:00:33 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/09 13:58:58 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/10 10:02:17 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	ScalarConverter::convert(std::string literal)
 			break;
 		case 4:
 			sc.nanOrInfConvert(literal);
+			break;
 		case 5:
 			std::cout << RED << "Invalid Input!" << RESET << std::endl;
 			break;
@@ -215,20 +216,60 @@ void	ScalarConverter::floatConvert(std::string literal)
 	else
 		std::cout << "char: '" << static_cast<char>(tmpI) << "'" << std::endl;
 
-	//str(int) to int
+	//str(float) to int
 	if (tmpD > 2147483647 || tmpD < -2147483648)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
 	
-	//str(int) to float
+	//str(float) to float
 	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
 	
-	//str(int) to double
+	//str(float) to double
 	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
 }
 
 void	ScalarConverter::doubleConvert(std::string literal)
 {
+	double	tmpD = std::strtod(literal.c_str(), NULL);
+	int		tmpI = static_cast<int>(tmpD);
+	float	tmpF = static_cast<float>(tmpD);
+
+	//str(double) to char
+	if (tmpD < 32)
+		std::cout  << "char: Non displayable" << std::endl;
+	else if (tmpD > 127)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(tmpI) << "'" << std::endl;
+
+	//str(double) to int
+	if (tmpD > 2147483647 || tmpD < -2147483648)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
 	
+	//str(double) to float
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	
+	//str(double) to double
+	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
+}
+
+void	ScalarConverter::nanOrInfConvert(std::string literal)
+{
+	double	tmpD = std::strtod(literal.c_str(), NULL);
+	float	tmpF = std::atof(literal.c_str());
+
+	//str(nanOrInf) to char
+	std::cout << "char: impossible" << std::endl;
+
+	//str(nanOrInf) to int
+	std::cout << "int: impossible" << std::endl;
+	
+	//str(nanOrInf) to float
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	
+	//str(nanOrInf) to double
+	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
 }
