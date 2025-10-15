@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:00:33 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/10 10:02:17 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/15 10:11:10 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ int	ScalarConverter::checkType(std::string	literal)
 
 void	ScalarConverter::convert(std::string literal)
 {
-	ScalarConverter	sc; //TODO: mudar nome variavel	
+	ScalarConverter	scalar;
 
-	int		type = sc.checkType(literal);
+	int		type = scalar.checkType(literal);
 
 	//-char - 0
 	//-int - 1
@@ -134,19 +134,19 @@ void	ScalarConverter::convert(std::string literal)
 	switch (type)
 	{
 		case 0:
-			sc.charConvert(literal);
+			scalar.charConvert(literal);
 			break;
 		case 1:
-			sc.intConvert(literal);
+			scalar.intConvert(literal);
 			break;
 		case 2:
-			sc.floatConvert(literal);
+			scalar.floatConvert(literal);
 			break;
 		case 3:
-			sc.doubleConvert(literal);
+			scalar.doubleConvert(literal);
 			break;
 		case 4:
-			sc.nanOrInfConvert(literal);
+			scalar.nanOrInfConvert(literal);
 			break;
 		case 5:
 			std::cout << RED << "Invalid Input!" << RESET << std::endl;
@@ -155,17 +155,15 @@ void	ScalarConverter::convert(std::string literal)
 }
 
 void	ScalarConverter::charConvert(std::string literal)
-{
-	//ScalarConverter	sc; //TODO precisa disto??
-	
+{	
 	char	tmpC = static_cast<char>(literal[0]);
 
-	std::cout << "char: '" << tmpC << "'" << std::endl; //TODO dar handle de non displayable?
+	std::cout << "char: '" << tmpC << "'" << std::endl;
 
 	int		tmpI = static_cast<int>(literal[0]);
 	std::cout << "int: " << tmpI << std::endl;
 	
-	float	tmpF = static_cast<float>(tmpI); //TODO precision e 1 ou 2?
+	float	tmpF = static_cast<float>(tmpI);
 	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
 	
 	double	tmpD = static_cast<double>(tmpI);
