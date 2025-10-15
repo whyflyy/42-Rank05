@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:00:33 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/15 10:11:10 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/15 12:31:16 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 ScalarConverter::ScalarConverter() 
 {
-	std::cout << GREEN << "Scalar Converted Default Constructor Called" << RESET << std::endl;
+	std::cout << GREEN << "ScalarConverter Default Constructor Called" << RESET << std::endl;
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter& other) 
+ScalarConverter::ScalarConverter(const ScalarConverter &copy) 
 {
 	std::cout << CYAN << "ScalarConverter Copy Constructor Called" << RESET << std::endl;
-	(void)other;
+	(void)copy;
 }
 
-ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& other)
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter &copy)
 {
 	std::cout << CYAN << "ScalarConverter Copy Assignement Operator Called" << RESET << std::endl;
-	(void)other;
-	return *this; //TODO: tem de ter parenteses no return?
+	(void)copy;
+	return *this;
 }
 
 ScalarConverter::~ScalarConverter()
@@ -175,9 +175,6 @@ void	ScalarConverter::intConvert(std::string literal)
 	int		tmpI = std::atoi(literal.c_str());
 	float	tmpF = static_cast<float>(tmpI);
 	double	tmpD = static_cast<double>(tmpI);
-	
-	/* float	tmpF = std::atof(literal.c_str());
-	double	tmpD = std::strtod(literal.c_str(), NULL); */
 
 	//str(int) to char
 	if (tmpD < 32)
@@ -191,10 +188,10 @@ void	ScalarConverter::intConvert(std::string literal)
 	if (tmpD > 2147483647 || tmpD < -2147483648)
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
+		std::cout << "int: " << tmpI << std::endl;
 	
 	//str(int) to float
-	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
 	
 	//str(int) to double
 	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
@@ -218,10 +215,10 @@ void	ScalarConverter::floatConvert(std::string literal)
 	if (tmpD > 2147483647 || tmpD < -2147483648)
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
+		std::cout << "int: " << tmpI << std::endl;
 	
 	//str(float) to float
-	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
 	
 	//str(float) to double
 	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
@@ -245,10 +242,10 @@ void	ScalarConverter::doubleConvert(std::string literal)
 	if (tmpD > 2147483647 || tmpD < -2147483648)
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(tmpI) << std::endl; //TODO nao precisa de static cast? 
+		std::cout << "int: " << tmpI << std::endl;
 	
 	//str(double) to float
-	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
 	
 	//str(double) to double
 	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;
@@ -266,7 +263,7 @@ void	ScalarConverter::nanOrInfConvert(std::string literal)
 	std::cout << "int: impossible" << std::endl;
 	
 	//str(nanOrInf) to float
-	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl; //TODO fazer igual ao anterior, se deixar com o static cast meter nos outros tambem, ou entao tirar no de cima
+	std::cout << std::fixed << std::setprecision(1) << "float: " << tmpF << "f" << std::endl;
 	
 	//str(nanOrInf) to double
 	std::cout << std::fixed << std::setprecision(1) << "double: " << tmpD << std::endl;

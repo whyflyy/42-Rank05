@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConerter.hpp                                 :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 19:00:31 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/15 10:39:01 by jcavadas         ###   ########.fr       */
+/*   Created: 2025/10/15 10:47:12 by jcavadas          #+#    #+#             */
+/*   Updated: 2025/10/15 12:33:08 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,18 @@
 #define PEACH		"\033[38;5;217m"
 
 #include <iostream>
+#include <stdint.h>
 #include <string>
-#include <sstream>
-#include <cstdlib>
-#include <iomanip>
+#include "Data.hpp"
 
-class ScalarConverter
+class Serializer
 {
 	private:
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter &copy);
-		ScalarConverter&	operator=(const ScalarConverter &copy);
-		~ScalarConverter();
-
-		static	int		checkType(std::string literal);
-		static	void	intConvert(std::string literal);
-		static	void	charConvert(std::string literal);
-		static	void	floatConvert(std::string literal);
-		static	void	doubleConvert(std::string literal);
-		static	void	nanOrInfConvert(std::string literal);
+		Serializer();
+		Serializer(const Serializer &copy);
+		Serializer	&operator=(const Serializer &copy);
+		~Serializer();		
 	public:
-		static	void	convert(std::string	literal);
+		static	uintptr_t serialize(Data* ptr);
+		static	Data* deserialize(uintptr_t raw);
 };
