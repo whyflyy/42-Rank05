@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/15 13:52:45 by jcavadas          #+#    #+#              #
-#    Updated: 2025/10/21 12:17:25 by jcavadas         ###   ########.fr        #
+#    Created: 2025/10/21 16:20:13 by jcavadas          #+#    #+#              #
+#    Updated: 2025/10/21 16:20:18 by jcavadas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C++ = c++
 C++FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp Base.cpp
+SRC = main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = Base
+NAME = Array
 
 all: $(NAME)
 
