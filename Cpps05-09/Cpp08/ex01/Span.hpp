@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:06:06 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/24 15:18:25 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:03:07 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <ctime>
 
 class Span
 {

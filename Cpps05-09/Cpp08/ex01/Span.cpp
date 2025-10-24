@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:05:43 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/24 15:21:23 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:10:18 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	Span::addNumber(int num)
 
 int		Span::shortestSpan()
 {
-	if (_N < 2)
+	//if (_N < 2) // Changed _N for _vec.size() _N is the capacity, so it would try for 1 element vec.
+	if (_vec.size() < 2)
 		throw EmptySpan();
 
 	std::vector<int>	orgVec = _vec;
@@ -74,19 +75,22 @@ int		Span::shortestSpan()
 
 int		Span::longestSpan()
 {
-	if (_N < 2)
+	//if (_N < 2) // Changed _N for _vec.size() _N is the capacity, so it would try for 1 element vec.
+	if (_vec.size() < 2)
 		throw EmptySpan();
 	
-	
+	std::vector<int>::const_iterator	min = std::min_element(_vec.begin(), _vec.end());
+	std::vector<int>::const_iterator	max = std::max_element(_vec.begin(), _vec.end());
+
+	return *max - *min;
 }
 
-
-class	AlreadyFull : public std::exception
+const char*	AlreadyFull::what() const throw()
 {
-	const char* what() const throw();
+	return "Impossible to insert more numbers in the container!";
 };
 
-class	EmptySpan : public std::exception
+const char*	EmptySpan::what() const throw()
 {
-	const char* what() const throw();	
+	return "Container must contain at least 2 numbers!";
 };
