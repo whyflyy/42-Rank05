@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 13:43:06 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/17 14:49:41 by jcavadas         ###   ########.fr       */
+/*   Created: 2025/10/23 16:06:06 by jcavadas          #+#    #+#             */
+/*   Updated: 2025/10/24 15:18:25 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,34 @@
 #define PEACH		"\033[38;5;217m"
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <limits>
 
-class Base
+class Span
 {
 	private:
-		
+		std::vector<int>	_vec;
+		unsigned int		_N;
 	public:
-		virtual ~Base();
+		Span();
+		Span(unsigned int n);
+		Span(const Span& copy);
+		Span &operator=(const Span& copy);
+		~Span();
+
+		void	addNumber(int num);
+		int		shortestSpan();
+		int		longestSpan();
+		
+};
+
+class	AlreadyFull : public std::exception
+{
+	const char* what() const throw();
+};
+
+class	EmptySpan : public std::exception
+{
+	const char* what() const throw();	
 };

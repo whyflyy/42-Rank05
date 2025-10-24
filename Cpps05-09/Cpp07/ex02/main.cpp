@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:20:33 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/21 17:23:18 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:00:48 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ int	main(void)
 			std::cout << strArray[i] << " ";
 		std::cout << std::endl;
 		std::cout << "Array Size: " << strArray.size() << std::endl;
+		//strArray[10] = "Hello!";
+		//std::cout << strArray[10] << std::endl;
 		std::cout << "Trying to go out of bounds" << std::endl;
-		std::cout << strArray[10] << std::endl;
+		std::cout << strArray[100] << std::endl;
 	}
 	catch(const std::exception& e)
 	{

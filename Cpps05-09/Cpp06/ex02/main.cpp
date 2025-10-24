@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 13:53:38 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/15 16:38:55 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:58:50 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ Base*	generate(void)
 	
 	switch (random)
 	{
-	case 0:
-		return (new A);
-		break;
-	case 1:
-		return (new B);
-		break;
-	case 2:
-		return (new C);
-		break;
+		case 0:
+			return (new A);
+			break;
+		case 1:
+			return (new B);
+			break;
+		case 2:
+			return (new C);
+			break;
 	}
 	return (NULL);
 }
@@ -103,4 +103,8 @@ int	main()
 	std::cout << std::endl;
 	identify(*Brah);
 
+	std::cout << SEPARATOR << MAGENTA << "Destructors separator" << SEPARATOR << RESET << std::endl;
+	
+	delete base;
+	delete Brah;
 }

@@ -1,18 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.cpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 13:51:01 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/17 11:49:23 by jcavadas         ###   ########.fr       */
+/*   Created: 2025/10/23 16:05:41 by jcavadas          #+#    #+#             */
+/*   Updated: 2025/10/23 16:12:07 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
-
-Base::~Base()
-{
-	std::cout << RED << "Base Destructor Called" << RESET << std::endl;
-}
+#include "Span.hpp"

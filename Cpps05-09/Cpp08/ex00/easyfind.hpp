@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 13:43:06 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/17 14:49:41 by jcavadas         ###   ########.fr       */
+/*   Created: 2025/10/23 15:37:46 by jcavadas          #+#    #+#             */
+/*   Updated: 2025/10/23 15:53:51 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,28 @@
 #define PEACH		"\033[38;5;217m"
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
-class Base
+class NoMatch : public std::exception
 {
-	private:
-		
-	public:
-		virtual ~Base();
+	const char* what() const throw();
 };
+
+const char* NoMatch::what() const throw()
+{
+	return "Error: No match found!";
+}
+
+template <typename T>
+typename T::iterator easyfind(T& container, int nb)
+{
+	typename	T::iterator	i;
+	
+	i = std::find(container.begin(), container.end(), nb);
+
+	if (i == container.end())
+		throw NoMatch();
+	else
+		return std::find(container.begin(), container.end(), nb);
+}
