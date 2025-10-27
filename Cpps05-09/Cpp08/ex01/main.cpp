@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:05:41 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/24 21:14:56 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:27:10 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,19 @@ int main(void)
 
 	try
 	{
-		std::cout << SEPARATOR << MAGENTA << "Test Creating/Adding to vector" << RESET << SEPARATOR << std::endl;
+		std::cout << SEPARATOR << MAGENTA << "Tests from subject" << RESET << SEPARATOR << std::endl;
 		Span	empty(0);		   
-		Span	s(10);
-
+		Span	sp = Span(5);
 		std::cout << std::endl;
 
-		s.addNumber(1);
-		s.addNumber(14);
-		s.addNumber(42);
-		s.addNumber(35);
-		s.addNumber(68);
-		s.addNumber(29);
-		s.addNumber(55);
-		s.addNumber(67);
-		s.addNumber(76);
-		s.addNumber(44);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
 
-		std::cout << YELLOW << "Shortest span: " << CYAN << s.shortestSpan() << RESET << std::endl;
-		std::cout << YELLOW << "Longest span: " << CYAN << s.longestSpan() << RESET << std::endl;
+		std::cout << YELLOW << "Shortest span: " << CYAN << sp.shortestSpan() << RESET << std::endl;
+		std::cout << YELLOW << "Longest span: " << CYAN << sp.longestSpan() << RESET << std::endl;
 		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
@@ -112,12 +106,15 @@ int main(void)
 	{
 		std::cout << SEPARATOR << MAGENTA << "Random 10,000 numbers" << RESET << SEPARATOR << std::endl;
 		unsigned int	N = 10000;
+		std::vector<int>	bigV;
 		Span	big(N);
 		std::cout << std::endl;
 
 		for (unsigned int i = 0; i < N; i++)
-			big.addNumber(std::rand() % 1000000); // Random numbers between 0 and 999999
+			bigV.push_back(std::rand() % 1000000); // Random numbers between 0 and 999999
 
+		big.addRange(bigV.begin(), bigV.end());
+			
 		std::cout << YELLOW << "Shortest span: " << CYAN << big.shortestSpan() << RESET << std::endl;
 		std::cout << YELLOW << "Longest span: " << CYAN << big.longestSpan() << RESET << std::endl;
 		std::cout << std::endl;

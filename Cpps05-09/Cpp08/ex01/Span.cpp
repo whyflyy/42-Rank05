@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:05:43 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/24 21:10:18 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:23:51 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ int		Span::longestSpan()
 
 	return *max - *min;
 }
+
+void	Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	size_t	distance = std::distance(begin, end);
+
+	if (_vec.size() + distance > _N)
+		throw AlreadyFull();
+	_vec.insert(_vec.end(), begin, end);
+}
+
 
 const char*	AlreadyFull::what() const throw()
 {
