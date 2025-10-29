@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/23 16:05:45 by jcavadas          #+#    #+#              #
-#    Updated: 2025/10/28 13:35:16 by jcavadas         ###   ########.fr        #
+#    Created: 2025/10/28 13:35:09 by jcavadas          #+#    #+#              #
+#    Updated: 2025/10/28 13:35:42 by jcavadas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C++ = c++
 C++FLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp Span.cpp
+SRC = main.cpp 
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = Span
+NAME = Abomination
 
 all: $(NAME)
 
