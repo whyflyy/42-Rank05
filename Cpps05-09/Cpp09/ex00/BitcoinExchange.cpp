@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:01:57 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/10/30 17:07:47 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:57:00 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,15 @@ bool	isValidDate(const std::string& date)
 	int	month = std::atoi(strMonth.c_str());
 	int	day = std::atoi(strDay.c_str());
 
-	if (month < 1 || month > 12)
-	{
-		std::cerr << YELLOW << "Error: Invalid date (invalid month) => " << TURQUOISE << date << RESET << std::endl;
-		return false;
-	}
-
 	if (year < 1900 || year > 2100)
 	{
 		std::cerr << YELLOW << "Error: Invalid date (invalid year) => " << TURQUOISE << date << RESET << std::endl;
+		return false;
+	}
+	
+	if (month < 1 || month > 12)
+	{
+		std::cerr << YELLOW << "Error: Invalid date (invalid month) => " << TURQUOISE << date << RESET << std::endl;
 		return false;
 	}
 
@@ -143,7 +143,7 @@ void	BitcoinExchange::loadDB(const std::string& filename) //no caso seria o data
 		if (i > 0) //Passa a frente a primeira linha, o header
 		{
 			size_t comma = dataString.find(",");
-			if (comma = std::string::npos)
+			if (comma == std::string::npos)
 			{
 				std::cerr << YELLOW << "Error: Bad line => " << TURQUOISE << dataString << RESET << std::endl;
 				continue;
@@ -163,7 +163,75 @@ void	BitcoinExchange::loadDB(const std::string& filename) //no caso seria o data
 	}
 }
 
+static std::string trim(const std::string &str)
+{
+	size_t start = str.find_first_not_of(" \t");
+	size_t end = str.find_last_not_of(" \t");
+	if (start == std::string::npos || end == std::string::npos)
+		return "";
+	return str.substr(start, end - start + 1);
+}
+
 void	BitcoinExchange::processInput(const std::string& filename)
 {
-	std::ifstream
+	std::ifstream	file(filename.c_str());
+	
+	if (file.fail())
+	{
+		throw std::runtime_error("An error ocurred when opening the input file!");
+		return ;
+	}
+	
+	int i = 0;
+	std::string	dataString;
+	std::string	date;
+	std::string	value;
+	
+	while (getline(file, dataString))
+	{
+		if (i > 0) //Passa a frente a primeira linha, o header
+		{
+			if (dataString.empty())
+				std::cerr << YELLOW << "Error: Bad input (empty line)" << RESET << std::endl;
+			else
+			{
+				size_t pipe = dataString.find("|");
+				if (pipe == std::string::npos)
+				{
+					std::cerr << YELLOW << "Error: Bad input => " << TURQUOISE << dataString << RESET << std::endl;
+					continue;
+				}
+				
+				date = trim(dataString.substr(0, pipe));
+				value = trim(dataString.substr(pipe + 1));
+				// date = dataString.substr(0, dataString.find("|") - 1);
+				// value = dataString.substr(dataString.find("|") + 2);
+
+				if (!isValidDate(date))
+					continue;
+				if (!isValidValue(value))
+				{
+					std::cerr << YELLOW << "Error: Ivalid value => " << TURQUOISE << value << RESET << std::endl;
+					continue;
+				}
+
+				std::map<std::string, float>::iterator	it = database.lower_bound(date);
+				if (it == database.begin() && it->first != date)
+				{
+					std::cerr << YELLOW << "Error: no earlier date in database!" << RESET << std::endl;
+					continue;
+				}
+				
+				if (it == database.end() || it->first != date)
+					--it;
+				
+				float	rate = it->second;
+
+				float	val = std::atof(value.c_str());
+
+				std::cout << CYAN << date << " => " << value << " = " << MAGENTA << (val * rate) << RESET << std::endl;
+			}
+		}
+		i++;
+	}
 }
