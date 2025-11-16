@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RPN.hpp                                            :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 15:26:27 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/12 15:40:28 by jcavadas         ###   ########.fr       */
+/*   Created: 2025/11/12 15:39:44 by jcavadas          #+#    #+#             */
+/*   Updated: 2025/11/15 22:48:10 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,48 @@
 #define PEACH		"\033[38;5;217m"
 
 #include <iostream>
-#include <stack>
-#include <sstream>
-#include <limits.h>
-#include <cstdlib>
-#include <fstream>
-#include <iomanip>
-#include <cctype>
-#include <stdexcept>
+#include <ctime>
+#include <vector>
+#include <deque>
 #include <limits>
-#include <algorithm>
 
 static long int	MAXINT = std::numeric_limits<int>::max();
 static long int	MININT = std::numeric_limits<int>::min();
 
-class RPN
+class PmergeMe
 {
 	private:
-		std::stack<long int>	_stack;
-	public:
-		RPN();
-		RPN(const RPN& copy);
-		RPN &operator=(const RPN& copy);
-		~RPN();
+		//-----------------Vector--------------------//
+		std::vector<long>	_vec;
+		std::vector<long>	_organizedVec;
+		std::vector<std::pair<long, long> >	_vecPairs;
+		bool	_oddVec;
+		long	_vecLastElement;
+		
+		
+		//-----------------Deque--------------------//
+		std::deque<long>	_deq;
+		std::deque<long>	_organizedDeq;
+		std::deque<std::pair<long, long> >	_deqPairs;
+		bool	_oddDeq;
+		long	_deqLastElement;
 
-		void	calculate(std::string input);
+
+	public:
+		PmergeMe();
+		PmergeMe(const PmergeMe& copy);
+		PmergeMe &operator=(const PmergeMe& copy);
+		~PmergeMe();
+
+		//-----------------Vector--------------------//
+		void	argToVec(int ac, char **av);
+		void	organizeVec(void);
+		void	splitVecToPair(void);
+		void	organizeVecPairs(void);
+		
+		
+		//-----------------Deque--------------------//
+		void	argToDeq(int ac, char **av);
+		void	organizeDeq(void);
+		void	splitDeqToPair(void);
 };
