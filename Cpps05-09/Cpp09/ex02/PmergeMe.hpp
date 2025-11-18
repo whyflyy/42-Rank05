@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:44 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/15 22:48:10 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:52:18 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ class PmergeMe
 		void	organizeVec(void);
 		void	splitVecToPair(void);
 		void	organizeVecPairs(void);
-		
+		void	sortMainChain(void);
+
 		
 		//-----------------Deque--------------------//
 		void	argToDeq(int ac, char **av);

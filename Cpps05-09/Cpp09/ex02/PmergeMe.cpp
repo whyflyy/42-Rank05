@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:46 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/15 22:48:33 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:57:37 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,29 @@ void	PmergeMe::splitVecToPair(void)
 //STEP 2
 void	PmergeMe::organizeVecPairs(void)
 {
+	for (size_t i = 0; i < _vecPairs.size(); i++)
+	{
+		if (_vecPairs[i].first < _vecPairs[i].second)
+			std::swap(_vecPairs[i].first, _vecPairs[i].second);
+	}
+}
+
+//STEP 3
+void	PmergeMe::sortMainChain(void)
+{
+	std::vector<long>	mainChain;
+
+	for (int i = 0; i < _vecPairs.size(); i++)
+		mainChain.push_back(_vecPairs[i].first);
+
+	size_t	mid = mainChain.size() / 2;
+	
 	
 }
+//TODO: Extract the large elements of each pair into a new vector(main chain)
+//TODO: Sort the main chain recursively
+//TODO: After sorting, _oganizedVec = mainChain
+
 
 
 //-----------------Deque--------------------//
