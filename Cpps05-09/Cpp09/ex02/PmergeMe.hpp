@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:44 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/18 16:52:18 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/20 17:00:06 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 #include <vector>
 #include <deque>
 #include <limits>
+#include <cstdlib>
+#include <algorithm>
+#include <iomanip>
 
 static long int	MAXINT = std::numeric_limits<int>::max();
 static long int	MININT = std::numeric_limits<int>::min();
@@ -64,6 +67,12 @@ class PmergeMe
 		void	splitVecToPair(void);
 		void	organizeVecPairs(void);
 		void	sortMainChain(void);
+		void	insertSmalls(void);
+
+		//-----------------Vector Utils--------------------//
+		void	recursiveSort(std::vector<long> &v);
+		std::vector<size_t>	generateJacobOrder(size_t n);
+		void	printOrgVector(void);
 
 		
 		//-----------------Deque--------------------//

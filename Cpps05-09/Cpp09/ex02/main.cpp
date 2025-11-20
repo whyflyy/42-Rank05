@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:42 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/15 18:16:02 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/20 17:09:53 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,57 @@ void	validateArgs(int ac, char **av)
 	}
 }
 
+void printBefore(int ac, char **av)
+{
+	std::cout << YELLOW << "Before: " << RESET;
+	for (int i = 1; i < ac; i++)
+	{
+		std::cout << av[i] << " ";
+	}
+	std::cout << "\n";
+	
+}
+
+void printAfter(PmergeMe &merger, int option)
+{
+	switch (option)
+	{
+		case 1 :
+			std::cout << GREEN << "After: " << RESET ;
+			merger.printOrgVector();
+			break;
+		/* case 2 :
+			std::cout << GREEN << "After: " << RESET ;
+			merger.printDeque(merger.getOrganizedDeque());
+			break; */
+	}
+}
+
+void printTimer(std::clock_t start, std::clock_t end, int ac, int option)
+{
+	double finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	switch (option)
+	{
+	case 1:
+		std::cout << "Time to process a range of " << MAGENTA << ac - 1 << RESET
+			<< " elements with " << CYAN << "std::vector: " << PEACH << std::fixed << std::setprecision(5) << finalTime << RESET << " us" << "\n";
+		break;
+	case 2:
+		std::cout << "Time to process a range of " << MAGENTA << ac - 1 << RESET
+			<< " elements with " << CYAN << "std::deque: " << PEACH << std::fixed << std::setprecision(5) << finalTime << RESET << " us" << "\n";
+		break;
+	}
+}
+
+//TODO procurar maneira melhor de gerar random numeros?
+//shuf -i 1-10000000 -n 5000 | tr '\n' ' ' | xargs ./PmergeMe
+
 int	main(int ac, char **av)
 {
 	PmergeMe	merger;
 	if (ac < 2)
 	{
-		std::cout << YELLOW << "Incorrect usage! Must be used as ./PmergeMe <numbers>" << RESET << std::endl;
+		std::cout << YELLOW << "Incorrect usage! Must be used as ./PmergeMe <merger>" << RESET << std::endl;
 		return 1;
 	}
 	try
@@ -64,14 +109,24 @@ int	main(int ac, char **av)
 		merger.argToVec(ac, av);
 		merger.argToDeq(ac, av);
 
-		//TODO: Print do av before orgarnizar?
+		std::cout << std::endl;
+		printBefore(ac, av);
 
-		//TODO: clock para contar tempo para organizar
+		std::clock_t	startTime;
+		std::clock_t	endTime;
 
 		//-----------------Vector--------------------//
-		wait_for_enter();
-		std::cout << SEPARATOR << MAGENTA << "Vector: " << SEPARATOR << RESET << std::endl;
+		//std::cout << SEPARATOR << MAGENTA << "Vector: " << SEPARATOR << RESET << std::endl;
+		startTime = std::clock();
 		merger.organizeVec();
+		endTime = std::clock();
+		
+		printAfter(merger, 1);
+		printTimer(startTime, endTime, ac, 1);
+		
+		std::cout << std::endl;
+
+		//TODO DEQUE
 	}
 	catch(const std::exception& e)
 	{
