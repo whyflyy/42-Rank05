@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:44 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/20 17:00:06 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/21 13:58:01 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,28 @@ class PmergeMe
 		void	organizeVec(void);
 		void	splitVecToPair(void);
 		void	organizeVecPairs(void);
-		void	sortMainChain(void);
-		void	insertSmalls(void);
+		void	sortMainChainVec(void);
+		void	insertSmallsVec(void);
 
 		//-----------------Vector Utils--------------------//
-		void	recursiveSort(std::vector<long> &v);
-		std::vector<size_t>	generateJacobOrder(size_t n);
-		void	printOrgVector(void);
+		void	recursiveSortVec(std::vector<long> &v);
+		std::vector<size_t>	generateVecJacobOrder(size_t n);
+		void	printOrgVec(void);
 
 		
 		//-----------------Deque--------------------//
 		void	argToDeq(int ac, char **av);
 		void	organizeDeq(void);
 		void	splitDeqToPair(void);
+		void	organizeDeqPairs(void);
+		void	sortMainChainDeq(void);
+		void	insertSmallsDeq(void);
+
+		//-----------------Deque Utils--------------------//
+		void	recursiveSortDeq(std::deque<long> &d);
+		std::deque<size_t>	generateDeqJacobOrder(size_t n);
+		void	printOrgDeq(void);
+
+
+
 };

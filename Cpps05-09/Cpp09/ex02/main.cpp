@@ -6,7 +6,7 @@
 /*   By: jcavadas <jcavadas@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:39:42 by jcavadas          #+#    #+#             */
-/*   Updated: 2025/11/20 17:09:53 by jcavadas         ###   ########.fr       */
+/*   Updated: 2025/11/21 14:04:49 by jcavadas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void printAfter(PmergeMe &merger, int option)
 	{
 		case 1 :
 			std::cout << GREEN << "After: " << RESET ;
-			merger.printOrgVector();
+			merger.printOrgVec();
 			break;
-		/* case 2 :
+		case 2 :
 			std::cout << GREEN << "After: " << RESET ;
-			merger.printDeque(merger.getOrganizedDeque());
-			break; */
+			merger.printOrgDeq();
+			break;
 	}
 }
 
@@ -110,6 +110,7 @@ int	main(int ac, char **av)
 		merger.argToDeq(ac, av);
 
 		std::cout << std::endl;
+		
 		printBefore(ac, av);
 
 		std::clock_t	startTime;
@@ -117,6 +118,7 @@ int	main(int ac, char **av)
 
 		//-----------------Vector--------------------//
 		//std::cout << SEPARATOR << MAGENTA << "Vector: " << SEPARATOR << RESET << std::endl;
+		
 		startTime = std::clock();
 		merger.organizeVec();
 		endTime = std::clock();
@@ -124,9 +126,17 @@ int	main(int ac, char **av)
 		printAfter(merger, 1);
 		printTimer(startTime, endTime, ac, 1);
 		
-		std::cout << std::endl;
+		//-----------------Deque--------------------//
+		//std::cout << SEPARATOR << MAGENTA << "Deque: " << SEPARATOR << RESET << std::endl;
 
-		//TODO DEQUE
+		startTime = std::clock();
+		merger.organizeDeq();
+		endTime = std::clock();
+
+		//printAfter(merger, 2); //ELE NAO PODE IR COM O PRINTAFTER DO DEQUE !!!!
+		printTimer(startTime, endTime, ac, 2);
+
+		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
 	{
